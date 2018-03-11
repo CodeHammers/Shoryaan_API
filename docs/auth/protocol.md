@@ -1,7 +1,7 @@
 # Auth Protocol
 API uses token-based auth to authorize users' action based on their roles , there are two tokens: 
 refresh token : used to get a new access token to avoid getting your token expired
-access token : should be included in all requests to maintain identity , access token is sent on sign_in /sign_up/refresh_token
+.access token : should be included in all requests to maintain identity , access token is sent on sign_in /sign_up/refresh_token
 
 ## Routes
 

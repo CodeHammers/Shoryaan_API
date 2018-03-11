@@ -21,8 +21,23 @@
     "include-all": "^1.0.0",
     "rc": "1.0.1",
     "sails": "~0.12.14",
-    "sails-disk": "~0.10.9",
-    "sails-hook-authorization": "^2.0.0-0"
+    "sails-postgresql": "^0.11.4",
+    "async": "^0.9.0",
+    "bcrypt": "^0.8.6",
+    "jsonwebtoken": "^6.2.0",
+    "lodash": "^4.0.0",
+    "request-helpers": "^2.0.1",
+    "sails-build-dictionary": "^0.10.1",
+    "sails-util": "^0.10.4"
+  },
+  "devDependencies": {
+    "barrels": "^1.6.4",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "sails": "~0.11.0",
+    "sails-disk": "^0.10.7",
+    "sails-memory": "^0.10.6",
+    "supertest": "^1.2.0"
   },
   "scripts": {
     "debug": "node debug app.js",
