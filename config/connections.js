@@ -79,8 +79,8 @@ module.exports.connections = {
   PostgresqlServer: {
      adapter: 'sails-postgresql',
      host: 'localhost',
-     user: 'postgres', // optional
-     password: '.1', // optionalBUILDING BLOCKS
+     user: process.env.POSTGRES_USER, // optional
+     password: process.env.POSTGRES_PASSWORD, // optionalBUILDING BLOCKS
 
      database: 'shoryaan_development' //optional
    }
