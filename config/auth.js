@@ -11,7 +11,7 @@ module.exports.auth = {
     loginProperty: 'username',
 
     // Options for user signup. @see https://www.npmjs.com/package/request-helpers
-    parameterBlueprint: ['username', {param: 'email', required: false}],
+    parameterBlueprint: ['username', {param: 'email', required: false},{param: 'bloodtype',required: false}],
 
     // Option to define which relations to populate on the user find
     // can be an array (of relations), a string (single relation), or a boolean (all or nothing).

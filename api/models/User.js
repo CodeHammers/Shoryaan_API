@@ -16,6 +16,11 @@ module.exports = {
       type    : 'string',
       required: true
     },
+    bloodtype:{
+      type    : 'string',
+      required: false,
+      defaultsTo: '?'
+    },
 
     emailConfirmed: {
       type      : 'boolean',
