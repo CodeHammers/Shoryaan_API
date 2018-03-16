@@ -20,7 +20,6 @@ module.exports = {
 
     password: {
       type: 'string',
-      unique: true,
       required: true,
       maxLength: 20,
       minLength: 8
@@ -28,7 +27,7 @@ module.exports = {
 
     bloodtype:{
       type: 'string',
-      enum: ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'],
+      enum: ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-','?'],
       required: false,
       defaultsTo: '?',
       index: true

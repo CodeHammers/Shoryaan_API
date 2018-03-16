@@ -64,7 +64,33 @@ module.exports = {
       });
   },
 
-  
+  resetpassword: (req,res) => {
+    var authConfig    = sails.config.auth;
+    var loginProperty  = authConfig.identityOptions.loginProperty;
+    var authService   = sails.services.authservice;
+
+    var params = requestHelpers.secureParameters([{param: 'password', cast: 'string'}, {param:'reset_password'}], req, true);
+    params = params["data"]
+    let model = sails.config.auth.wetland ? req.getRepository(sails.models.user.Entity) : sails.models.user;
+    model.findOne({id:req.access_token.user}).then(
+      (foundUser)=>{
+        authService.validatePassword(params['password'], foundUser.password).then(
+          (valid)=>{
+            foundUser.password =  params['reset_password']
+            foundUser.save().then(
+              (saved)=>{
+                res.ok()
+              }
+            )
+          },(invalid)=>{
+            res.badRequest({password:params['password']})
+          }
+        )
+      }
+    )
+
+
+  },
   edit: (req,res) => {
     var authConfig    = sails.config.auth;
     var loginProperty  = authConfig.identityOptions.loginProperty;

@@ -3,6 +3,7 @@ module.exports.policies = {
     login       : true,
     me          : ['verifyToken', 'ensureToken'],
     edit          : ['verifyToken', 'ensureToken'],
+    resetpassword : ['verifyToken', 'ensureToken'],
     refreshToken: true,
     signup      : true
   }
