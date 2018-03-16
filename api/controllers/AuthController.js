@@ -72,7 +72,7 @@ module.exports = {
     var params = requestHelpers.secureParameters([{param: 'password', cast: 'string'}, {param:'username'},{param:'bloodtype'}], req, true);
     params = params["data"]
     let model = sails.config.auth.wetland ? req.getRepository(sails.models.user.Entity) : sails.models.user;
-    model.update({id:req.access_token.user},{username: params['username'],email: params['email'],bloodtype:params['bloodtype']})
+    model.update({id: req.access_token.user}, {username: params['username'], bloodtype: params['bloodtype']})
       .then(  (user)=>{ params['password']='filtered', res.ok,res.json(params) })
       .catch(res.negotiate)
 

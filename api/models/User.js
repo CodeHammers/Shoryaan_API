@@ -1,71 +1,87 @@
 var bcrypt = require('bcrypt');
 
 module.exports = {
+  
   attributes: {
+
     username: {
       type : 'string',
+      required: true,
+      maxLength: 20,
       index: true
     },
 
     email: {
       type : 'email',
-      index: true
+      required: true,
+      unique: true,
+      email: true
     },
 
     password: {
-      type    : 'string',
-      required: true
+      type: 'string',
+      unique: true,
+      required: true,
+      maxLength: 20,
+      minLength: 8
     },
+
     bloodtype:{
-      type    : 'string',
+      type: 'string',
+      enum: ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'],
       required: false,
-      defaultsTo: '?'
+      defaultsTo: '?',
+      index: true
     },
 
     emailConfirmed: {
-      type      : 'boolean',
+      type: 'boolean',
       defaultsTo: false
     },
 
     toJSON: function() {
-      var values = this.toObject();
+      var userObj = this.toObject();
 
-      delete values.password;
+      delete userObj.password;
 
-      return values;
+      return userObj;
     }
   },
 
   beforeCreate: encryptPassword,
-  beforeUpdate: (values, next) => {
-    if (!values.password) {
-      delete values.password;
-
-      return next();
-    }
-
-    try {
-      // check if the password is already hashed
-      bcrypt.getRounds(values.password);
-    } catch(e) {
-      return encryptPassword(values, next);
-    }
-
-    next();
-  }
+  beforeUpdate: validatePassword
 };
 
-function encryptPassword(values, next) {
-  if (!values.password) {
+//callback functions
+
+function validatePassword(userObj, next){
+  if (!userObj.password) {
+    delete userObj.password;
+
     return next();
   }
 
-  bcrypt.hash(values.password, 10, (error, hash) => {
+  try {
+    // check if the password is already hashed
+    bcrypt.getRounds(userObj.password);
+  } catch(e) {
+    return encryptPassword(userObj, next);
+  }
+
+  next();
+}
+
+function encryptPassword(userObj, next) {
+  if (!userObj.password) {
+    return next();
+  }
+
+  bcrypt.hash(userObj.password, 10, (error, hash) => {
     if (error) {
       return next(error);
     }
 
-    values.password = hash;
+    userObj.password = hash;
 
     next();
   });
