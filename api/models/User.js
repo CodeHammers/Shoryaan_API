@@ -21,7 +21,6 @@ module.exports = {
     password: {
       type: 'string',
       required: true,
-      maxLength: 20,
       minLength: 8
     },
 

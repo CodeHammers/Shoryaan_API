@@ -44,6 +44,9 @@ module.exports = {
         return authService.validatePassword(params.password, foundUser.password);
       })
       .then(() => {
+        sails.log.info('helloooooooooooooooooooooooooooooooooooooooooooooooo')
+        console.log("--------------------------------------------------------")
+        console.log(authConfig.identityOptions.requireEmailVerification )
         if (authConfig.identityOptions.requireEmailVerification && !user.emailConfirmed) {
           throw {message:'email_not_confirmed'};
         }
@@ -227,6 +230,8 @@ module.exports = {
 
   verifyEmail: (req, res) => {
     var params = requestHelpers.secureParameters(['token'], req, true);
+    var authService    = sails.services.authservice;
+    let model = sails.config.auth.wetland ? req.getRepository(sails.models.user.Entity) : sails.models.user;
 
     if (!params.isValid()) {
       return res.badRequest({message: 'missing_parameters'}, params.getMissing());
@@ -236,7 +241,7 @@ module.exports = {
 
     params = params.asObject();
 
-    sails.services.authService.verifyToken(params.token)
+    authService.verifyToken(params.token)
       .then(decodedToken => {
         if (sails.config.auth.wetland) {
           manager = req.getManager();
@@ -244,7 +249,7 @@ module.exports = {
           return manager.getRepository(sails.models.user.Entity).findOne(decodedToken.activate);
         }
 
-        return sails.models.user.findOneId(decodedToken.activate);
+        return model.findOne(decodedToken.activate);
       }).then(user => {
       if (!user) {
         throw 'invalid_user';
