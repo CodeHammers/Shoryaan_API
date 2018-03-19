@@ -94,6 +94,7 @@ module.exports = {
 
 
   },
+
   edit: (req,res) => {
     var authConfig    = sails.config.auth;
     var loginProperty  = authConfig.identityOptions.loginProperty;
@@ -105,8 +106,8 @@ module.exports = {
       .then(  (user)=>{ params['password']='filtered', res.ok,res.json(params) })
       .catch(res.negotiate)
 
-  }
-  ,
+  },
+  
   me: (req, res) => {
     let model = sails.config.auth.wetland ? req.getRepository(sails.models.user.Entity) : sails.models.user;
     model.findOne(req.access_token.user)
