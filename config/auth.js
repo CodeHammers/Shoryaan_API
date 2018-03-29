@@ -49,17 +49,17 @@ var mailOptions = {
   identityOptions: {
 
     // Property to use for login (one of "email" or "username").
-    loginProperty: 'username',
+    loginProperty: 'email',
 
     // Options for user signup. @see https://www.npmjs.com/package/request-helpers
-    parameterBlueprint: ['username', {param: 'email', required: false},{param: 'bloodtype',required: false}],
+    parameterBlueprint: ['username', {param: 'email', required: false},{param: 'bloodtype',required: false},{param: 'gender',required:false}],
 
     // Option to define which relations to populate on the user find
     // can be an array (of relations), a string (single relation), or a boolean (all or nothing).
     populate: true,
 
     // Whether or not you wish to require a user to validate their email address before being able to log in.
-    requireEmailVerification: true
+    requireEmailVerification: false
   },
 
   jwt: {

@@ -31,6 +31,11 @@ module.exports = {
       defaultsTo: '?',
       index: true
     },
+    gender:{
+      type: 'string',
+      enum: ['Male', 'Female'],
+      required: false
+    },
 
     emailConfirmed: {
       type: 'boolean',
