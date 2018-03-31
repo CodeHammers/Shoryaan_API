@@ -26,6 +26,7 @@
     "nodemailer": "^4.6.3",
     "promise-deferred": "^2.0.1",
     "rc": "1.0.1",
+    "request": "^2.85.0",
     "request-helpers": "^2.0.1",
     "sails": "~0.12.14",
     "sails-build-dictionary": "^0.10.1",

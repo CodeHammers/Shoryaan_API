@@ -97,7 +97,21 @@ module.exports = {
 
   //https://graph.facebook.com/me?access_token=123456
   login_facebook: (req,res) => {
+    var authService   = sails.services.authservice;
+    var params = requestHelpers.secureParameters([{param: 'access_token'}], req, true);
+    params = params["data"]
 
+    authService.verifyFacebookUserAccessToken(params['access_token']).then(
+      (res)=>{
+        console.log(res)
+        console.log(params['access_token'])
+        res.ok(res)
+      },
+      (error)=>{
+        console.log(params['access_token'])
+        res.badRequest({message:error.message})
+      }
+    )
   },
 
   edit: (req,res) => {
