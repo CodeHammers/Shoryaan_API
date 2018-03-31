@@ -266,7 +266,7 @@ class AuthService {
   // https://graph.facebook.com/me?access_token=$token
   verifyFacebookUserAccessToken(token) {
     var deferred = new Q();
-    var path = 'https://graph.facebook.com/me?access_token=' + token+'&fields=email,last_name,first_name,name';
+    var path = 'https://graph.facebook.com/me?access_token=' + token+'&fields=email,last_name,first_name,name,gender';
     request(path, function (error, response, body) {
       var data = JSON.parse(body);
       if (!error && response && response.statusCode && response.statusCode == 200) {
@@ -278,7 +278,8 @@ class AuthService {
           firstName: data.first_name,
           name: data.name,
           lastName: data.last_name,
-          email: data.email
+          email: data.email,
+          gender: data.gender
         };
         deferred.resolve(user);
       }

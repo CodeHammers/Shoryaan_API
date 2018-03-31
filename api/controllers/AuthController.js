@@ -105,7 +105,11 @@ module.exports = {
       (user)=>{
         console.log(user)
         user.password ='dumbasss'
-        user.username = 'anytning'
+        user.username =  user.name
+        if(user.gender == 'male')  user.gender = 'Male'
+        if(user.gender == 'female')  user.gender = 'Female'
+
+        user.emailConfirmed = true
         sails.models.user.create(user).then(
           (newUser)=>{
                   //console.log(params['access_token'])
@@ -115,6 +119,8 @@ module.exports = {
             })
 
           },(err)=>{
+            console.log(err)
+
             sails.models.user.findOne({email:user.email}).then(
               (foundUser)=>{
               res.ok({
