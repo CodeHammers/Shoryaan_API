@@ -266,10 +266,12 @@ class AuthService {
   // https://graph.facebook.com/me?access_token=$token
   verifyFacebookUserAccessToken(token) {
     var deferred = new Q();
-    var path = 'https://graph.facebook.com/me?access_token=' + token;
+    var path = 'https://graph.facebook.com/me?access_token=' + token+'&fields=email,last_name,first_name,name';
     request(path, function (error, response, body) {
       var data = JSON.parse(body);
       if (!error && response && response.statusCode && response.statusCode == 200) {
+
+        //console.log(data)
         var user = {
           facebookUserId: data.id,
           username: data.username,
