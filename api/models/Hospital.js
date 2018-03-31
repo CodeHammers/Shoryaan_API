@@ -43,7 +43,7 @@ module.exports = {
       index: true
     },
 
-    locationLatitdue: {
+    locationLatitude: {
       type: 'float',
       required: true,
       index: true
