@@ -102,13 +102,39 @@ module.exports = {
     params = params["data"]
 
     authService.verifyFacebookUserAccessToken(params['access_token']).then(
-      (res)=>{
-        console.log(res)
-        console.log(params['access_token'])
-        res.ok(res)
+      (user)=>{
+        console.log(user)
+        user.password ='dumbasss'
+        user.username = 'anytning'
+        sails.models.user.create(user).then(
+          (newUser)=>{
+                  //console.log(params['access_token'])
+            res.ok({
+              user: newUser,
+              access_token: authService.issueTokenForUser(newUser)
+            })
+
+          },(err)=>{
+            sails.models.user.findOne({email:user.email}).then(
+              (foundUser)=>{
+              res.ok({
+                user: foundUser,
+                access_token: authService.issueTokenForUser(foundUser)
+              })
+              },
+              (err)=>{
+                console.log(err)
+              }
+              )
+
+            //res.badRequest(err.invalidAttributes)
+          }
+          )
+
+  
       },
       (error)=>{
-        console.log(params['access_token'])
+        //console.log(params['access_token'])
         res.badRequest({message:error.message})
       }
     )
