@@ -42,6 +42,11 @@ module.exports = {
       defaultsTo: false
     },
 
+    hospitalManager: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
     toJSON: function() {
       var userObj = this.toObject();
 
