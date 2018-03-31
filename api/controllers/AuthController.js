@@ -95,6 +95,11 @@ module.exports = {
 
   },
 
+  //https://graph.facebook.com/me?access_token=123456
+  login_facebook: (req,res) => {
+
+  },
+
   edit: (req,res) => {
     var authConfig    = sails.config.auth;
     var loginProperty  = authConfig.identityOptions.loginProperty;
