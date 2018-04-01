@@ -11,6 +11,13 @@ module.exports = {
       maxLength: 20
     },
 
+    state:{
+      type: 'string',
+      required: true,
+      index: true,
+      enum: ["Cairo", "Alexandria", "Giza", "Aswan", "Asyut", "Beheira", "Beni Suef", "Dakahlia", "New Valley", "Port Said", "Sharqia", "Suez"]
+    },
+
     email: {
       type: 'email',
       required: false,
@@ -54,11 +61,15 @@ module.exports = {
       defaultsTo: false
     },
 
+    managers:{
+      collection: 'user',
+      via: 'hospitals'
+    },
+
     toJSON: function() {
       var hospitalObj = this.toObject();
 
       return hospitalObj;
     }
   }
-
 };
