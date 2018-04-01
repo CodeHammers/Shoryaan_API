@@ -5,11 +5,11 @@ module.exports = {
         model = sails.models.hospital;
 
         search = {};
-        if(req.query.name != null) search.name = req.query.name;
+        if(req.query.name != null) search.name =  { startsWith : req.query.name} ;
         if(req.query.state != null) search.state = req.query.state;
         if(req.query.status != null) search.status = req.query.status;
         //start with
-        model.find(search).then(
+        model.find({ }).where(search).then(
             (payload)=>{
                 res.ok(payload);
             },
@@ -20,13 +20,14 @@ module.exports = {
     },
 
     create: (req, res)=>{
+
         var params = requestHelpers.secureParameters([{param: 'name'}, {param: 'state'}, {param: 'email'}, {param: 'phone'},  {param: 'address'}, {param: 'status'},
-                     {param: 'locationLongitude'}, {param: 'locationLatitdue'}, {param: 'isVerified'}], req, true);
+                     {param: 'locationLongitude'}, {param: 'locationLatitude'}, {param: 'isVerified'}], req, true);
         
         params = params["data"];
 
         model = sails.models.hospital;
-        
+        //console.log(params)
         model.create(params).then(
             (payload)=>{
                 res.ok(payload);

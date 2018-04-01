@@ -44,8 +44,8 @@ module.exports = {
         return authService.validatePassword(params.password, foundUser.password);
       })
       .then(() => {
-        sails.log.info('helloooooooooooooooooooooooooooooooooooooooooooooooo')
-        console.log("--------------------------------------------------------")
+        //sails.log.info('helloooooooooooooooooooooooooooooooooooooooooooooooo')
+        //console.log("--------------------------------------------------------")
         console.log(authConfig.identityOptions.requireEmailVerification )
         if (authConfig.identityOptions.requireEmailVerification && !user.emailConfirmed) {
           throw {message:'email_not_confirmed'};
