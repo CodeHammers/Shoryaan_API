@@ -31,6 +31,7 @@ module.exports = {
       defaultsTo: '?',
       index: true
     },
+
     gender:{
       type: 'string',
       enum: ['Male', 'Female'],
@@ -40,6 +41,11 @@ module.exports = {
     emailConfirmed: {
       type: 'boolean',
       defaultsTo: false
+    },
+
+    hospitals:{
+      collection: 'hospital',
+      via: 'managers'
     },
 
     toJSON: function() {

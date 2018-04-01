@@ -61,11 +61,15 @@ module.exports = {
       defaultsTo: false
     },
 
+    managers:{
+      collection: 'user',
+      via: 'hospitals'
+    },
+
     toJSON: function() {
       var hospitalObj = this.toObject();
 
       return hospitalObj;
     }
   }
-
 };
