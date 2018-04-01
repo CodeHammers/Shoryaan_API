@@ -43,6 +43,11 @@ module.exports = {
       defaultsTo: false
     },
 
+    hospitalManager: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
     hospitals:{
       collection: 'hospital',
       via: 'managers'

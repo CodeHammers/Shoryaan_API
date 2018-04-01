@@ -97,7 +97,53 @@ module.exports = {
 
   //https://graph.facebook.com/me?access_token=123456
   login_facebook: (req,res) => {
+    var authService   = sails.services.authservice;
+    var params = requestHelpers.secureParameters([{param: 'access_token'}], req, true);
+    params = params["data"]
 
+    authService.verifyFacebookUserAccessToken(params['access_token']).then(
+      (user)=>{
+        console.log(user)
+        user.password ='dumbasss'
+        user.username =  user.name
+        if(user.gender == 'male')  user.gender = 'Male'
+        if(user.gender == 'female')  user.gender = 'Female'
+
+        user.emailConfirmed = true
+        sails.models.user.create(user).then(
+          (newUser)=>{
+                  //console.log(params['access_token'])
+            res.ok({
+              user: newUser,
+              access_token: authService.issueTokenForUser(newUser)
+            })
+
+          },(err)=>{
+            console.log(err)
+
+            sails.models.user.findOne({email:user.email}).then(
+              (foundUser)=>{
+              res.ok({
+                user: foundUser,
+                access_token: authService.issueTokenForUser(foundUser)
+              })
+              },
+              (err)=>{
+                console.log(err)
+              }
+              )
+
+            //res.badRequest(err.invalidAttributes)
+          }
+          )
+
+  
+      },
+      (error)=>{
+        //console.log(params['access_token'])
+        res.badRequest({message:error.message})
+      }
+    )
   },
 
   edit: (req,res) => {

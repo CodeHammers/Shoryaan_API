@@ -70,5 +70,5 @@ module.exports = {
                 res.badRequest(err.invalidAttributes);
             }
         )
-    },
+    }
 };
