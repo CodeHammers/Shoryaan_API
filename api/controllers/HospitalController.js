@@ -21,7 +21,7 @@ module.exports = {
 
     create: (req, res)=>{
         var params = requestHelpers.secureParameters([{param: 'name'}, {param: 'state'}, {param: 'email'}, {param: 'phone'},  {param: 'address'}, {param: 'status'},
-                     {param: 'locationLongitude'}, {param: 'locationLatitdue'}, {param: 'isVerified'}], req, true);
+                     {param: 'locationLongitude'}, {param: 'locationLatitude'}, {param: 'isVerified'}], req, true);
         
         params = params["data"];
 

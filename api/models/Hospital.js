@@ -8,7 +8,7 @@ module.exports = {
       required: true,
       index: true,
       unique: true,
-      maxLength: 20
+      maxLength: 50
     },
 
     state:{
