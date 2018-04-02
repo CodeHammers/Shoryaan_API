@@ -6,5 +6,9 @@ module.exports.policies = {
     resetpassword : ['verifyToken', 'ensureToken'],
     refreshToken: true,
     signup      : true
+  },
+  HospitalController: {
+  	create       : ['verifyToken', 'ensureToken']
   }
+
 };
