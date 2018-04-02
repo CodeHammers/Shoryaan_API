@@ -31,7 +31,15 @@ module.exports = {
         model.create(params).then(
             (payload)=>{
                 model.findOne({id:payload.id}).populate('managers').then(
-                    (d)=>{res.ok(d)}
+                    (d)=>{
+                        sails.models.user.update({id: req.access_token.user},{hospitalManager:true}).then(
+                            (usr)=>{
+                                res.ok(d)
+                            }
+
+                        )
+
+                    }
                 )               
             },
             (err)=>{
@@ -73,5 +81,17 @@ module.exports = {
                 res.badRequest(err.invalidAttributes);
             }
         )
+    },
+    user_hospitals: (req,res)=>{
+        model = sails.models.user;
+        
+        
+        model.findOne({id: req.access_token.user}).populate('hospitals')
+        .then(
+            (user)=>{
+                res.ok(user.hospitals)
+            }
+        )
+   
     }
 };

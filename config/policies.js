@@ -8,7 +8,8 @@ module.exports.policies = {
     signup      : true
   },
   HospitalController: {
-  	create       : ['verifyToken', 'ensureToken']
+  	create       : ['verifyToken', 'ensureToken'],
+    user_hospitals: ['verifyToken', 'ensureToken']
   }
 
 };
