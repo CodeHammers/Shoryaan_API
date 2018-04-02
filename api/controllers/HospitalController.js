@@ -9,7 +9,7 @@ module.exports = {
         if(req.query.state != null) search.state = req.query.state;
         if(req.query.status != null) search.status = req.query.status;
         //start with
-        model.find(search).then(
+        model.find(search)/*.populate('managers')*/.then(
             (payload)=>{
                 res.ok(payload);
             },
@@ -21,15 +21,18 @@ module.exports = {
 
     create: (req, res)=>{
         var params = requestHelpers.secureParameters([{param: 'name'}, {param: 'state'}, {param: 'email'}, {param: 'phone'},  {param: 'address'}, {param: 'status'},
-                     {param: 'locationLongitude'}, {param: 'locationLatitdue'}, {param: 'isVerified'}], req, true);
+                     {param: 'locationLongitude'}, {param: 'locationLatitude'}, {param: 'isVerified'}], req, true);
         
         params = params["data"];
-
+        params['managers']=[req.access_token.user]
+        //console.log(req.access_token.user)
         model = sails.models.hospital;
-        
+        //console.log(sails.models.hospital)
         model.create(params).then(
             (payload)=>{
-                res.ok(payload);
+                model.findOne({id:payload.id}).populate('managers').then(
+                    (d)=>{res.ok(d)}
+                )               
             },
             (err)=>{
                 res.badRequest(err.invalidAttributes);
