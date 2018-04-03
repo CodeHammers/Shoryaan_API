@@ -6,6 +6,7 @@ module.exports.routes = {
   'POST /auth/refresh-token'     : 'AuthController.refreshToken',
     '/': {
     view: 'homepage'
-  }
+  },
+  'GET /admin'                   : 'AdminController.admin'
 
 };

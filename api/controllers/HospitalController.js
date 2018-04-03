@@ -57,13 +57,14 @@ module.exports = {
     },
 
     destroy: (req, res)=>{
-        var params = requestHelpers.secureParameters([{param: 'name'}], req, true);
+        //var params = requestHelpers.secureParameters([{param: 'name'}], req, true);
 
-        params = params["data"];
+        //params = params["data"];
 
         model = sails.models.hospital;
 
-        model.destroy({name:params['name']}).then(
+        console.log(req.query.id)
+        model.destroy({id:req.query.id}).then(
             (payload)=>{
                 res.ok({operation: 'success'});
             },
