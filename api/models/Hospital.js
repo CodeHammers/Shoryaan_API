@@ -18,6 +18,11 @@ module.exports = {
       enum: ["Cairo", "Alexandria", "Giza", "Aswan", "Asyut", "Beheira", "Beni Suef", "Dakahlia", "New Valley", "Port Said", "Sharqia", "Suez"]
     },
 
+    district:{
+      type: 'string',
+      required: true
+    },
+
     email: {
       type: 'email',
       required: false,
