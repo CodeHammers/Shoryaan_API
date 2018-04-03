@@ -27,6 +27,8 @@ module.exports = {
         params['managers']=[req.access_token.user]
         //console.log(req.access_token.user)
         model = sails.models.hospital;
+        if(params['district']==null)
+            params['district'] ='default value'
         //console.log(sails.models.hospital)
         model.create(params).then(
             (payload)=>{
@@ -43,6 +45,7 @@ module.exports = {
                 )               
             },
             (err)=>{
+                console.log(err)
                 res.badRequest(err.invalidAttributes);
             }
         )

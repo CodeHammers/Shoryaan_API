@@ -154,13 +154,19 @@ module.exports = {
                 {param: 'city'}, {param: 'name'}, {param: 'state'}, {param: 'dateOfBirth'}], req, true);
 
     params = params["data"]
-
     let model = sails.config.auth.wetland ? req.getRepository(sails.models.user.Entity) : sails.models.user;
 
     model.update({id: req.access_token.user}, {username: params['username'], bloodtype: params['bloodtype'],gender: params['gender'],
                 city: params['city'], name: params['name'], state: params['state'], dateOfBirth: params['dateOfBirth']})
       .then(  (user)=>{ params['password']='filtered', res.ok,res.json(params) })
-      .catch(res.negotiate)
+      .catch(
+
+        (err)=>{
+              console.log("I'm here")
+                  console.log(err)
+           res.negotiate
+        }
+       )
   },
   
   me: (req, res) => {
