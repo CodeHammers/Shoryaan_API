@@ -11,6 +11,12 @@ module.exports = {
       index: true
     },
 
+    name: {
+      type: 'string',
+      required: false,
+      maxLength: 30
+    },
+
     email: {
       type : 'email',
       required: true,
@@ -36,6 +42,23 @@ module.exports = {
       type: 'string',
       enum: ['Male', 'Female'],
       required: false
+    },
+
+    dateOfBirth:{
+      type: 'string', 
+      required: false
+    },
+
+    city:{
+      type: 'string',
+      required: false
+    },
+
+    state:{
+      type: 'string',
+      enum: ["Cairo", "Alexandria", "Giza", "Aswan", "Asyut", "Beheira", "Beni Suef", "Dakahlia", "New Valley", "Port Said", "Sharqia", "Suez"],
+      required: false,
+      index: true
     },
 
     emailConfirmed: {

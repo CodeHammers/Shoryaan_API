@@ -8,7 +8,7 @@ module.exports = {
       required: true,
       index: true,
       unique: true,
-      maxLength: 20
+      maxLength: 50
     },
 
     state:{
@@ -16,6 +16,11 @@ module.exports = {
       required: true,
       index: true,
       enum: ["Cairo", "Alexandria", "Giza", "Aswan", "Asyut", "Beheira", "Beni Suef", "Dakahlia", "New Valley", "Port Said", "Sharqia", "Suez"]
+    },
+
+    district:{
+      type: 'string',
+      required: true
     },
 
     email: {
