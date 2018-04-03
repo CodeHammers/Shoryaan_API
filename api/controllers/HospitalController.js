@@ -3,12 +3,13 @@ var requestHelpers = require('request-helpers');
 module.exports = {
     index: (req, res) => {
         model = sails.models.hospital;
-
+        console.log('I here')
         search = {};
-        if(req.query.name != null) search.name = req.query.name;
+        if(req.query.name != null) search.name = { startsWith : req.query.name} 
         if(req.query.state != null) search.state = req.query.state;
         if(req.query.status != null) search.status = req.query.status;
         //start with
+        console.log(search)
         model.find(search)/*.populate('managers')*/.then(
             (payload)=>{
                 res.ok(payload);
