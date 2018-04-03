@@ -78,10 +78,8 @@ module.exports.connections = {
   ***************************************************************************/
   PostgresqlServer: {
      adapter: 'sails-postgresql',
-     host: 'localhost',
-     user: process.env.POSTGRES_USER, // optional
-     password: process.env.POSTGRES_PASSWORD, // optionalBUILDING BLOCKS
-     url: process.env.DATABASE_URL,
+
+     url: 'postgres://wdnrfcklkwrqny:0041ac0f130b3fc40bf5834cb063754d3a815b39ce40930a64fc0d91022bf79f@ec2-54-243-63-13.compute-1.amazonaws.com:5432/ddjld83n9q3if',
      ssl: true,
 
      database: 'shoryaan_development' //optional
