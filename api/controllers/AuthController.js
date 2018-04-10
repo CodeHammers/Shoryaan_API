@@ -104,7 +104,7 @@ module.exports = {
     authService.verifyFacebookUserAccessToken(params['access_token']).then(
       (user)=>{
         console.log(user)
-        user.password ='dumbasss'
+        user.password ='very_long_password_placeholder__will_be_replaced_by_token_in_production_env'
         user.username =  user.name
         if(user.gender == 'male')  user.gender = 'Male'
         if(user.gender == 'female')  user.gender = 'Female'

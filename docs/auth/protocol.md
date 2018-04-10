@@ -90,7 +90,7 @@ module.exports.auth = {
 
 ```
 
-### GET /auth/me
+### POST /auth/me
 
 Returns the user, token protected area.
 
@@ -116,3 +116,77 @@ The response:
   refresh_token: 'new jwt refresh token'
 }
 ```
+
+### POST /auth/resetpassword
+
+resets the `password` based on the `old password`.
+If the `old password` is not correct it will return `403`
+
+The request:
+
+```javascript
+{
+  access_token : 'jwt access token',
+  refresh_token: 'jwt refresh token',
+  password: 'old_password'.
+  reset_password: 'new_password'
+}
+```
+
+The response:
+
+```javascript
+{
+ 200 OK
+}
+```
+
+
+
+### POST /auth/edit
+
+update the `profile fields` based on the `access_token and provided data`.
+If the `access_token` is not correct it will return `403`
+
+The request:
+
+```javascript
+{
+  access_token : 'jwt access token',
+  refresh_token: 'jwt refresh token',
+   name: 'new name',
+   ..
+}
+```
+
+The response:
+
+```javascript
+{
+  user data after update
+}
+```
+
+### POST /auth/login_facebook
+
+signs in/up the `user` based on the `FB_access_token`.
+If the `access_token` is not correct it will return `403`
+
+The request:
+
+```javascript
+{
+  access_token : 'jwt access token'
+}
+```
+
+The response:
+
+```javascript
+{
+  user data after sign_up/in
+}
+```
+
+
+

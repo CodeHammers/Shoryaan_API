@@ -50,7 +50,7 @@ module.exports = {
 
     update: (req, res)=>{
         var params = requestHelpers.secureParameters([{param: 'name'}, {param: 'district'}, {param: 'email'}, {param: 'phone'}, {param: 'address'}, {param: 'status'},
-                    {param: 'isVerified'}], req, true);
+                 {param: 'state'},   {param: 'isVerified'}], req, true);
         
         params = params["data"];
 
