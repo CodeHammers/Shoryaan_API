@@ -71,6 +71,12 @@ module.exports = {
       via: 'hospitals'
     },
 
+    notifications: {
+      collection: 'notification',
+      via: 'hospital'
+    },
+
+
     toJSON: function() {
       var hospitalObj = this.toObject();
 

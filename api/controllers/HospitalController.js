@@ -5,7 +5,7 @@ module.exports = {
         model = sails.models.hospital;
 
         search = {};
-        if(req.query.name != null) search.name = req.query.name;
+        if(req.query.name != null) search.name = { startsWith : req.query.name } //req.query.name;
         if(req.query.state != null) search.state = req.query.state;
         if(req.query.status != null) search.status = req.query.status;
         //start with
@@ -43,6 +43,7 @@ module.exports = {
                 )               
             },
             (err)=>{
+                console.log(err)
                 res.badRequest(err.invalidAttributes);
             }
         )
