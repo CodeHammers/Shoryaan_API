@@ -94,5 +94,19 @@ module.exports = {
             }
         )
    
-    }
+    },
+    hospital_users: (req,res)=>{
+
+        model = sails.models.hospital;
+        
+        
+        model.findOne({id: req.query.id}).populate('managers')
+        .then(
+            (h)=>{
+                res.ok(h.managers)
+            }
+        )
+
+
+    } 
 };
