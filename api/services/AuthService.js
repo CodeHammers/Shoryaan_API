@@ -218,7 +218,7 @@ class AuthService {
       .then(refreshToken => {
         // verify if the refreshToken is generated together with the token
         if (refreshToken.unique !== (decodedToken.payload.iat + '.' + decodedToken.payload.user)) {
-          throw 'invalid_refresh_token';
+          throw {message:'invalid_refresh_token'};
         }
 
         delete decodedToken.payload.iat; // generate a new one

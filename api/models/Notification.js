@@ -19,6 +19,9 @@ module.exports = {
     address:{
       type: 'string'
     },
+    bloodTypes:{
+      type: 'string'
+    },
     hospital: {
       model: 'hospital'
     },

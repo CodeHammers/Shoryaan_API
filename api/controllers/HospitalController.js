@@ -98,15 +98,37 @@ module.exports = {
     hospital_users: (req,res)=>{
 
         model = sails.models.hospital;
-        
+        console.log(req.query.id)
+
         
         model.findOne({id: req.query.id}).populate('managers')
         .then(
             (h)=>{
+                console.log(h.managers)
                 res.ok(h.managers)
             }
         )
 
 
-    } 
+    },
+    add_user_to_hospital: (req,res)=>{
+        model = sails.models.hospital;
+
+        model.findOne({id:req.query.user_email}).then(
+
+            (u)=>{req.query.user_id = u.id}
+            )
+
+        
+        model.findOne({id: req.query.id}).populate('managers')
+        .then(
+            (h)=>{
+                //res.ok(h.managers)
+                h.managers.add(req.query.user_id)
+                h.save().then( ()=>{
+                    model.findOne({id: req.query.id}).populate('managers')
+                    .then((r)=>{res.ok(r)})
+            })
+        })
+    }
 };
