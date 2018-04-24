@@ -82,7 +82,7 @@ module.exports.connections = {
      user: process.env.POSTGRES_USER, // optional
      password: process.env.POSTGRES_PASSWORD, // optionalBUILDING BLOCKS
      url: process.env.DATABASE_URL,
-     ssl: false,
+     ssl: true,
 
      database: 'shoryaan_development' //optional
    }
