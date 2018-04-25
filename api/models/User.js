@@ -71,6 +71,13 @@ module.exports = {
       defaultsTo: false
     },
 
+    lat:{
+      type: 'float'
+    },
+    lng:{
+      type: 'float'
+    },
+
     hospitals:{
       collection: 'hospital',
       via: 'managers'
