@@ -120,4 +120,5 @@ nbproject
 
 package-lock.json
 
-assets/app/**/*.js
+assets/app/**/**/*.js
+assets/app/**/**/*.js*
